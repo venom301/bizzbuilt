@@ -18,9 +18,9 @@
             <li class="nav-item px-3">
               <a class="nav-link" href="/categories">Categories</a>
             </li>
-            <!-- <li class="nav-item px-3">
-              <a class="nav-link" href="admin/dashboard.html">Admin</a>
-            </li> -->
+            <li class="nav-item px-3">
+              <a class="nav-link" href="/admin">Admin</a>
+            </li>
           </ul>
         </div>
       </div>

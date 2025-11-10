@@ -114,3 +114,6 @@
     <!-- Footer -->
  <?= loadPartial('footer') ?>
 
+ <!-- scripts -->
+ <?= loadPartial('scripts') ?>
+
