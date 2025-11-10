@@ -27,7 +27,7 @@ class Router
       'uri' => $uri,
       'controller' => $controller,
       'controllerMethod' => $controllerMethod,
-    //   'middleware' => $middleware
+      //   'middleware' => $middleware
     ];
   }
 
@@ -109,7 +109,7 @@ class Router
       $match = true;
 
       // Check if the number of segments matches
-      if (count($uriSegments) === count($routeSegments) && strtoupper($route['method'] === $requestMethod)) {
+      if (count($uriSegments) === count($routeSegments) && strtoupper($route['method']) === $requestMethod) {
         $params = [];
 
         $match = true;
@@ -127,19 +127,15 @@ class Router
           }
         }
 
-        // if ($match) {
-        //   foreach ($route['middleware'] as $middleware) {
-        //     (new Authorize())->handle($middleware);
-        //   }
+        if ($match) {
+          $controller = 'App\\Controllers\\' . $route['controller'];
+          $controllerMethod = $route['controllerMethod'];
 
-        //   $controller = 'App\\controllers\\' . $route['controller'];
-        //   $controllerMethod = $route['controllerMethod'];
-
-        //   // Instatiate the controller and call the method
-        //   $controllerInstance = new $controller();
-        //   $controllerInstance->$controllerMethod($params);
-        //   return;
-        // }
+          // Instatiate the controller and call the method
+          $controllerInstance = new $controller();
+          $controllerInstance->$controllerMethod($params);
+          return;
+        }
       }
     }
 

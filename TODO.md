@@ -1,0 +1,4 @@
+- [x] Fix Router.php: Correct syntax error in route matching condition
+- [x] Fix Router.php: Uncomment the controller instantiation and method call block
+- [x] Fix Router.php: Correct namespace from 'App\\controllers\\' to 'App\\Controllers\\'
+- [x] Add index() method to HomeController.php to load the 'home' view

@@ -20,7 +20,7 @@ function basePath($path)
 
 function loadView($name)
 {
-    $viewPath = basePath("views/{$name}.view.php");
+    $viewPath = basePath("App/views/{$name}.view.php");
 
     //check if path exists
     if (file_exists($viewPath)) {
@@ -40,7 +40,7 @@ function loadView($name)
 
 function loadPartial($name)
 {
-    $partial = basePath("views/partials/{$name}.php");
+    $partial = basePath("App/views/partials/{$name}.php");
 
     //check if path exists
     if (file_exists($partial)) {
