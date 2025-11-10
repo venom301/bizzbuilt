@@ -1,0 +1,16 @@
+{
+  "name": "venom301/bizzbuilt",
+  "description": "bussiness weblog appplication",
+  "authors": [
+    {
+      "name": "vishnu",
+      "email": "ifyifeanyi301@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}

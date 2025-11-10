@@ -1,17 +1,20 @@
 <?php
 
+require '../vendor/autoload.php';
+
+use Framework\Router;
+
 require '../helper.php';
 
-$routes = [
-    '/' => 'Controllers/home.php',
-    '/categories' => 'Controllers/categories.php',
-    '/readmore' => 'Controllers/extra/readmore.php'
-];
+// Instatiate the router
+$router = new Router();
 
-$uri = $_SERVER['REQUEST_URI'];
+// Get routes
+$routes = require basePath('routes.php');
 
-if(array_key_exists($uri, $routes)){
-    require basePath($routes[$uri]);
-}else{
-    require basePath($routes['404']);
-}
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+// inspectAndDie($uri);
+
+// Route the request
+$router->route($uri);

@@ -140,6 +140,6 @@ body {
     }
     
     .admin-sidebar {
-        min-height: auto;
+        min-height: 1440px;
     }
 }

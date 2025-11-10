@@ -106,3 +106,14 @@ function loadImage($img, $default = 'placeholder.jpg')
     // Last resort: transparent 1x1 GIF data URI
     return 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 }
+
+/**
+ * Inspect a value(s) and die
+ * 
+ * @param mixed $value
+ * @return void
+ */
+function inspectAndDie($value)
+{
+    die(var_dump($value));
+}
