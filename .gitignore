@@ -1,0 +1,9 @@
+/vendor
+/node_modules
+/config/db.php
+.env
+.vscode
+.DS_Store
+
+# gitignore hepls to ignore files and directories that should not be tracked by Git.
+# (git add .) will add all files except those specified in this .gitignore file.
