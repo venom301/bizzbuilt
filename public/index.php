@@ -4,7 +4,8 @@ require '../helper.php';
 
 $routes = [
     '/' => 'Controllers/home.php',
-    '/categories' => 'Controllers/categories.php'
+    '/categories' => 'Controllers/categories.php',
+    '/readmore' => 'Controllers/extra/readmore.php'
 ];
 
 $uri = $_SERVER['REQUEST_URI'];

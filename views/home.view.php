@@ -47,7 +47,7 @@
                   future of industry in 2025...
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <a href="single-post.html" class="btn btn-primary"
+                  <a href="/readmore" class="btn btn-primary"
                     >Read More</a
                   >
                   <small class="text-muted">5 mins read</small>
@@ -74,7 +74,7 @@
                   revolutionizing business...
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <a href="single-post.html" class="btn btn-primary"
+                  <a href="/readmore" class="btn btn-primary"
                     >Read More</a
                   >
                   <small class="text-muted">4 mins read</small>
@@ -101,7 +101,7 @@
                   in today's digital age...
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
-                  <a href="single-post.html" class="btn btn-primary"
+                  <a href="/readmore" class="btn btn-primary"
                     >Read More</a
                   >
                   <small class="text-muted">6 mins read</small>
