@@ -9,7 +9,7 @@
 
 function basePath($path)
 {
-    return __DIR__ . '/'. $path;
+    return __DIR__ . '/' . $path;
 }
 
 /**
@@ -20,14 +20,14 @@ function basePath($path)
 
 function loadView($name)
 {
-  $viewPath = basePath("views/{$name}.view.php");
+    $viewPath = basePath("views/{$name}.view.php");
 
-  //check if path exists
-  if(file_exists($viewPath)){
-    require $viewPath;
-  } else {
-    echo "View file not found.";
-  }
+    //check if path exists
+    if (file_exists($viewPath)) {
+        require $viewPath;
+    } else {
+        echo "View file not found.";
+    }
 }
 
 
@@ -40,12 +40,69 @@ function loadView($name)
 
 function loadPartial($name)
 {
-   $partial = basePath("views/partials/{$name}.php");
+    $partial = basePath("views/partials/{$name}.php");
 
-   //check if path exists
-   if(file_exists($partial)){
-    require $partial;
-   } else {
-    echo "Partial file not found.";
-   }
+    //check if path exists
+    if (file_exists($partial)) {
+        require $partial;
+    } else {
+        echo "Partial file not found.";
+    }
+}
+
+/**
+ * load image
+ * @param string $img
+ * @return string
+ */
+function loadImage($img, $default = 'placeholder.jpg')
+{
+    // If empty, use default
+    if (empty($img)) {
+        $img = $default;
+    }
+
+    // If full URL provided, return as-is
+    if (filter_var($img, FILTER_VALIDATE_URL) || preg_match('#^(https?:)?//#', $img)) {
+        return $img;
+    }
+
+    $publicImgDir = __DIR__ . '/public/img/';
+    $altImgDir = __DIR__ . '/img/';
+    $urlBase = 'img/'; // path used in HTML src attributes
+
+    // If filename already has an extension, check directly
+    $ext = pathinfo($img, PATHINFO_EXTENSION);
+    if ($ext) {
+        $candidate = $publicImgDir . $img;
+        if (file_exists($candidate)) {
+            return $urlBase . $img;
+        }
+        $candidate = $altImgDir . $img;
+        if (file_exists($candidate)) {
+            return $urlBase . $img;
+        }
+    } else {
+        // Try common extensions in order
+        $exts = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
+        foreach ($exts as $e) {
+            $candidate = $publicImgDir . $img . '.' . $e;
+            if (file_exists($candidate)) {
+                return $urlBase . $img . '.' . $e;
+            }
+            $candidate = $altImgDir . $img . '.' . $e;
+            if (file_exists($candidate)) {
+                return $urlBase . $img . '.' . $e;
+            }
+        }
+    }
+
+    // Fallback to default if present in public/img
+    $fallback = $publicImgDir . $default;
+    if (file_exists($fallback)) {
+        return $urlBase . $default;
+    }
+
+    // Last resort: transparent 1x1 GIF data URI
+    return 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 }
