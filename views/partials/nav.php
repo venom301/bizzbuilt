@@ -1,7 +1,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="index.html">BizBuilt</a>
+        <a class="navbar-brand" href="/">BizBuilt</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -13,14 +13,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item px-3">
-              <a class="nav-link active" href="index.html">Home</a>
+              <a class="nav-link active" href="/">Home</a>
             </li>
             <li class="nav-item px-3">
-              <a class="nav-link" href="categories.html">Categories</a>
+              <a class="nav-link" href="/categories">Categories</a>
             </li>
-            <li class="nav-item px-3">
+            <!-- <li class="nav-item px-3">
               <a class="nav-link" href="admin/dashboard.html">Admin</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
