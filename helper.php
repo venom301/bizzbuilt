@@ -18,12 +18,13 @@ function basePath($path)
  * @return void
  */
 
-function loadView($name)
+function loadView($name, $data = [])
 {
     $viewPath = basePath("App/views/{$name}.view.php");
 
     //check if path exists
     if (file_exists($viewPath)) {
+        extract($data);
         require $viewPath;
     } else {
         echo "View file not found.";
@@ -116,4 +117,13 @@ function loadImage($img, $default = 'placeholder.jpg')
 function inspectAndDie($value)
 {
     die(var_dump($value));
+}
+
+/**
+ * format date
+ * @param string $date
+ * @return mixed string
+ */
+function dateFormat($date){
+    echo date('F j, Y', strtotime($date));
 }

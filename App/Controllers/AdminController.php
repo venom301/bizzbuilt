@@ -1,11 +1,23 @@
 <?php
 
 namespace App\Controllers;
+use Framework\Database;
 
-class AdminController{
-    public function index()
+class AdminController
+{
+
+  protected $db;
+  public function __construct()
   {
-    loadView('admin/dashboard');
+    $config = require basePath('config/db.php');
+    $this->db = new Database($config);
+  }
+  public function index()
+  {
+   $article = $this->db->query("SELECT * FROM blog")->fetchAll();
+    loadView('admin/dashboard', [
+      'articles' => $article
+    ]);
   }
 
   public function settings()
@@ -16,12 +28,16 @@ class AdminController{
   {
     loadView('admin/users');
   }
-   public function posts()
+  public function posts()
   {
     loadView('admin/post');
   }
-    public function comments()
+  public function comments()
   {
     loadView('admin/comments');
+  }
+
+  public function update(){
+    loadView('admin/form-handle/edit');
   }
 }
