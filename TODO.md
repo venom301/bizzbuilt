@@ -1,4 +1,5 @@
-- [x] Fix Router.php: Correct syntax error in route matching condition
-- [x] Fix Router.php: Uncomment the controller instantiation and method call block
-- [x] Fix Router.php: Correct namespace from 'App\\controllers\\' to 'App\\Controllers\\'
-- [x] Add index() method to HomeController.php to load the 'home' view
+- [x] Add POST route for /admin/posts/update in routes.php
+- [x] Update AdminController.php update() method to handle POST: process image upload, encode to base64, update DB
+- [x] Update loadImage() in helper.php to handle base64 data URIs
+- [x] Add hidden id field to edit form
+- [x] Test image upload and display (server started, browser tool disabled)

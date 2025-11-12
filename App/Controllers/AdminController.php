@@ -43,15 +43,54 @@ class AdminController
    */
   public function update($params)
   {
-    $id = $params['id'] ?? null;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Handle POST: update the article
+      $id = $_POST['id'] ?? null;
+      $title = $_POST['title'] ?? '';
+      $category = $_POST['category'] ?? '';
+      $content = $_POST['content'] ?? '';
+      // $tags = $_POST['tags'] ?? '';
 
-    $params = [
-      'id' => $id
-    ];
+      $imageData = null;
+      if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $imageTmp = $_FILES['image']['tmp_name'];
+        $imageType = $_FILES['image']['type'];
+        $imageContent = file_get_contents($imageTmp);
+        $imageData = 'data:' . $imageType . ';base64,' . base64_encode($imageContent);
+      }
 
-    $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
-    loadView('admin/form-handle/edit', [
-      'articles' => $article
-    ]);
+      $updateParams = [
+        'id' => $id,
+        'title' => $title,
+        'category' => $category,
+        'content' => $content
+        // 'tags' => $tags
+      ];
+
+      $query = "UPDATE blog SET title = :title, category = :category, content = :content";
+      if ($imageData) {
+        $query .= ", image_path = :image";
+        $updateParams['image'] = $imageData;
+      }
+      $query .= " WHERE id = :id";
+
+      $this->db->query($query, $updateParams);
+
+      // Redirect back to admin dashboard
+      header('Location: /admin');
+      exit;
+    } else {
+      // GET: displays edit page with details
+      $id = $params['id'] ?? null;
+
+      $params = [
+        'id' => $id
+      ];
+
+      $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
+      loadView('admin/form-handle/edit', [
+        'articles' => $article
+      ]);
+    }
   }
 }

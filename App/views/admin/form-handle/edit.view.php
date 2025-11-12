@@ -70,6 +70,7 @@
                     <div class="card-body">
                         <?php foreach ($articles as $article): ?>
                             <form action="/admin/posts/update" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($article->id) ?? ''; ?>">
                                 <div class="mb-3">
                                     <label for="postTitle" class="form-label">Title</label>
                                     <input type="text" class="form-control" id="postTitle" name="title"
@@ -100,7 +101,7 @@
                                     <textarea id="editor" name="content" class="form-control"
                                         rows="10"><?php echo htmlspecialchars($article->content ?? ''); ?></textarea>
                                 </div>
-                                <div class="mb-3">
+                                <!-- <div class="mb-3">
                                     <label class="form-label">Tags</label>
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="tagInput" placeholder="Add a tag">
@@ -120,7 +121,7 @@
                                         endforeach;
                                         ?>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="d-flex justify-content-end">
                                     <button type="button" class="btn btn-secondary me-2"
                                         onclick="window.history.back()">Cancel</button>

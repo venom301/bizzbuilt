@@ -9,5 +9,6 @@ $router->get('/admin/users', 'AdminController@users');
 $router->get('/admin/comments', 'AdminController@comments');
 $router->get('/admin/posts', 'AdminController@posts');
 $router->get('/admin/edit/{id}', 'AdminController@update');
+$router->post('/admin/posts/update', 'AdminController@update');
 
 

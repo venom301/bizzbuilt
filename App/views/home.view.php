@@ -21,21 +21,21 @@
   <div class="container">
     <h2 class="mb-4 fade-in">Featured Articles</h2>
     <div class="row">
-      <!-- Featured Post 1 -->
+      <!-- Featured Post -->
+       <?php foreach($articles as $article): ?>
       <div class="col-md-4">
         <div class="card blog-card fade-in">
-          <img src="<?= loadImage('buzz1') ?>" class="card-img-top" alt="Blog post image" />
+          <img src="<?= $article->image_path ?>" class="card-img-top" alt="Blog post image" />
           <div class="card-body">
             <div class="mb-2">
               <a href="#" class="tag">Business</a>
               <a href="#" class="tag">Strategy</a>
             </div>
             <h5 class="card-title">
-              10 Essential Business Strategies for 2025
+             <?= $article->title ?>
             </h5>
             <p class="card-text">
-              Learn about the key business strategies that will shape the
-              future of industry in 2025...
+             <?= $article->content ?>
             </p>
             <div class="d-flex justify-content-between align-items-center">
               <a href="/readmore" class="btn btn-primary">Read More</a>
@@ -44,94 +44,7 @@
           </div>
         </div>
       </div>
-      <!-- Featured Post 2 -->
-      <div class="col-md-4">
-        <div class="card blog-card fade-in">
-          <img src="<?= loadImage('buzz2') ?>" class="card-img-top" alt="Blog post image" />
-          <div class="card-body">
-            <div class="mb-2">
-              <a href="#" class="tag">Marketing</a>
-              <a href="#" class="tag">Digital</a>
-            </div>
-            <h5 class="card-title">Digital Marketing Trends to Watch</h5>
-            <p class="card-text">
-              Discover the latest digital marketing trends that are
-              revolutionizing business...
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <a href="/readmore" class="btn btn-primary">Read More</a>
-              <small class="text-muted">4 mins read</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Featured Post 3 -->
-      <div class="col-md-4">
-        <div class="card blog-card fade-in">
-          <img src="<?= loadImage('buzz3') ?>" class="card-img-top" alt="Blog post image" />
-          <div class="card-body">
-            <div class="mb-2">
-              <a href="#" class="tag">Leadership</a>
-              <a href="#" class="tag">Management</a>
-            </div>
-            <h5 class="card-title">Building Effective Teams Remotely</h5>
-            <p class="card-text">
-              Master the art of building and managing effective remote teams
-              in today's digital age...
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <a href="/readmore" class="btn btn-primary">Read More</a>
-              <small class="text-muted">6 mins read</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Featured Post 4 -->
-      <div class="col-md-4">
-        <div class="card blog-card fade-in">
-          <img src="<?= loadImage('buzz4') ?>" class="card-img-top" alt="Blog post image" />
-          <div class="card-body">
-            <div class="mb-2">
-              <a href="#" class="tag">Business</a>
-              <a href="#" class="tag">Strategy</a>
-            </div>
-            <h5 class="card-title">
-              What Needs To Be Done To Improve Business
-            </h5>
-            <p class="card-text">
-              Learn about the key business strategies that will shape the
-              future of industry in 2025...
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <a href="/readmore" class="btn btn-primary">Read More</a>
-              <small class="text-muted">5 mins read</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Featured Post 5 -->
-      <div class="col-md-4">
-        <div class="card blog-card fade-in">
-          <img src="<?= loadImage('buzz5') ?>" class="card-img-top" alt="Blog post image" />
-          <div class="card-body">
-            <div class="mb-2">
-              <a href="#" class="tag">Business</a>
-              <a href="#" class="tag">Strategy</a>
-            </div>
-            <h5 class="card-title">
-              Critcal Thinking And Self Development
-            </h5>
-            <p class="card-text">
-              Learn about the key business strategies that will shape the
-              future of industry in 2025...
-            </p>
-            <div class="d-flex justify-content-between align-items-center">
-              <a href="/readmore" class="btn btn-primary">Read More</a>
-              <small class="text-muted">5 mins read</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

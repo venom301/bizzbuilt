@@ -1,10 +1,21 @@
 <?php
 namespace App\Controllers;
+use Framework\Database;
 
 class HomeController
 {
+    protected $db;
+    public function __construct()
+    {
+        $config = require basePath('config/db.php');
+        $this->db = new Database($config);
+    }
     public function index()
     {
-        loadView('home');
+        $article = $this->db->query("SELECT * FROM blog")->fetchAll();
+        loadView('home', [
+            'articles' => $article
+        ]);
     }
+
 }
