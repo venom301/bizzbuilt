@@ -14,7 +14,7 @@ class AdminController
   }
   public function index()
   {
-   $article = $this->db->query("SELECT * FROM blog")->fetchAll();
+    $article = $this->db->query("SELECT * FROM blog")->fetchAll();
     loadView('admin/dashboard', [
       'articles' => $article
     ]);
@@ -37,7 +37,21 @@ class AdminController
     loadView('admin/comments');
   }
 
-  public function update(){
-    loadView('admin/form-handle/edit');
+  /**
+   * edit article
+   * @return void
+   */
+  public function update($params)
+  {
+    $id = $params['id'] ?? null;
+
+    $params = [
+      'id' => $id
+    ];
+
+    $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
+    loadView('admin/form-handle/edit', [
+      'articles' => $article
+    ]);
   }
 }

@@ -8,6 +8,6 @@ $router->get('/admin/settings', 'AdminController@settings');
 $router->get('/admin/users', 'AdminController@users');
 $router->get('/admin/comments', 'AdminController@comments');
 $router->get('/admin/posts', 'AdminController@posts');
-$router->get('/admin/edit', 'AdminController@update');
+$router->get('/admin/edit/{id}', 'AdminController@update');
 
 

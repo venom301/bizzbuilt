@@ -120,10 +120,10 @@
                                         <td><?= dateFormat($article->published_date) ?></td>
                                         <td><span class="badge bg-success">Published</span></td>
                                         <td>
-                                            <a href="/admin/edit" title="edit" class="btn btn-sm btn-primary me-1" aria-label="Edit post"><i
+                                            <a href="/admin/edit/<?= $article->id ?>" title="edit" class="btn btn-sm btn-primary me-1" aria-label="Edit post"><i
                                                     class="fas fa-edit"></i></a>
-                                            <button title="delete" class="btn btn-sm btn-danger" aria-label="Delete post"><i
-                                                    class="fas fa-trash"></i></button>
+                                            <a title="delete" class="btn btn-sm btn-danger" aria-label="Delete post"><i
+                                                    class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
