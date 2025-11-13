@@ -1,7 +1,7 @@
 <?= loadPartial('head') ?>
 <div class="d-flex">
     <!-- Sidebar -->
-<?= loadAdminPartial('sidebar') ?>
+    <?= loadAdminPartial('sidebar') ?>
 
     <!-- Main Content -->
     <div class="admin-content flex-grow-1">
@@ -81,10 +81,14 @@
                                         <td><?= dateFormat($article->published_date) ?></td>
                                         <td><span class="badge bg-success">Published</span></td>
                                         <td>
-                                            <a href="/admin/edit/<?= $article->id ?>" title="edit" class="btn btn-sm btn-primary me-1" aria-label="Edit post"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <a title="delete" class="btn btn-sm btn-danger" aria-label="Delete post"><i
-                                                    class="fas fa-trash"></i></a>
+                                            <form method="POST" action="/admin/post/delete/<?= $article->id ?>">
+                                                <input type="hidden" name="_method" value="delete">
+                                                <a href="/admin/edit/<?= $article->id ?>" title="edit"
+                                                    class="btn btn-sm btn-primary me-1" aria-label="Edit post"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <button type="submit" title="delete" class="btn btn-sm btn-danger"
+                                                    aria-label="Delete post"><i class="fas fa-trash"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -114,7 +118,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="postCategory" class="form-label">Category</label>
-                        <select class="form-select" id="postCategory" required>
+                        <select name="category" class="form-select" id="postCategory">
                             <option value="">Select a category</option>
                             <option value="business">Business</option>
                             <option value="strategy">Strategy</option>
@@ -122,28 +126,24 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="postTitle" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="postAuthor" name="author">
+                    </div>
+                    <div class="mb-3">
                         <label for="postImage" class="form-label">Featured Image</label>
-                        <input type="file" class="form-control" id="postImage" accept="image/*"
+                        <input name="image" type="file" class="form-control" id="postImage" accept="image/*"
                             onchange="previewImage(this)">
                         <img id="imagePreview" src="#" alt="Preview" class="mt-2 img-fluid d-none">
                     </div>
                     <div class="mb-3">
                         <label for="editor" class="form-label">Content</label>
-                        <textarea id="editor"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Tags</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="tagInput" placeholder="Add a tag">
-                            <button class="btn btn-outline-secondary" type="button" onclick="addTag()">Add</button>
-                        </div>
-                        <div id="tagContainer" class="mt-2"></div>
+                        <textarea name="content" id="editor"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Save Post</button>
+                <button type="submit" class="btn btn-primary">Save Post</button>
             </div>
         </div>
     </div>

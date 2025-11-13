@@ -9,6 +9,11 @@ $router->get('/admin/users', 'AdminController@users');
 $router->get('/admin/comments', 'AdminController@comments');
 $router->get('/admin/posts', 'AdminController@posts');
 $router->get('/admin/edit/{id}', 'AdminController@update');
+//update
 $router->post('/admin/posts/update', 'AdminController@update');
 
+//to delete post
+$router->delete('/admin/post/delete/{id}', 'AdminController@delete');
 
+//create
+$router->post('/admin/posts/create', 'AdminController@create');

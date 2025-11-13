@@ -40,6 +40,37 @@ class AdminController
     loadView('admin/comments');
   }
 
+  public function create($params)
+  {
+    // if (isset($request) && $request === 'put') {
+    //   $request = $_GET['_method'];
+
+    //   if ($_SERVER['REQUEST_METHOD'] === strtoupper($request)) {
+    //     $title = $_POST['title'];
+    //     $category = $_POST['category'];
+    //     $author = $_POST['author'];
+    //     $image = $_POST['image'];
+    //     $content = $_POST['content'];
+
+    //     $params = [
+    //       'title' => $title,
+    //       'category' => $category,
+    //       'author' => $author,
+    //       'image_path' => $image,
+    //       'content' => $content
+    //     ];
+
+    //     $article = $this->db->query("INSERT INTO blog (title, category, author, image_path, content) VALUES (:title, :category, :author, :image_path, :content)", $params);
+
+    //     loadView('admin', [
+    //       'articles' => $article
+    //     ]);
+    //   }
+    // }
+
+    loadView('admin');
+  }
+
   /**
    * edit article
    * @return void
@@ -96,4 +127,33 @@ class AdminController
       ]);
     }
   }
+
+  /**
+   * delete post
+   * @return void
+   */
+  public function delete($params)
+  {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $request = $_POST['_method'];
+
+      $id = $params['id'] ?? '';
+
+      $params = [
+        'id' => $id
+      ];
+
+      $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params);
+
+      if (isset($request) && $request === 'delete') {
+
+        $this->db->query("DELETE FROM blog WHERE id = :id", $params);
+
+        loadView('admin', [
+          'articles' => $article
+        ]);
+      }
+    }
+  }
+
 }
