@@ -30,7 +30,10 @@ class AdminController
   }
   public function posts()
   {
-    loadView('admin/post');
+    $article = $this->db->query("SELECT * FROM blog");
+    loadView('admin/post', [
+      'articles' => $article
+    ]);
   }
   public function comments()
   {

@@ -31,8 +31,6 @@ function loadView($name, $data = [])
     }
 }
 
-
-
 /**
  * load partial file
  * @param string $name
@@ -42,6 +40,24 @@ function loadView($name, $data = [])
 function loadPartial($name)
 {
     $partial = basePath("App/views/partials/{$name}.php");
+
+    //check if path exists
+    if (file_exists($partial)) {
+        require $partial;
+    } else {
+        echo "Partial file not found.";
+    }
+}
+
+/**
+ * load admin-partial file
+ * @param string $name
+ * @return void
+ */
+
+function loadAdminPartial($name)
+{
+    $partial = basePath("App/views/admin/admin-partials/{$name}.php");
 
     //check if path exists
     if (file_exists($partial)) {
