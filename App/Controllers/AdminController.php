@@ -42,33 +42,41 @@ class AdminController
 
   public function create($params)
   {
-    // if (isset($request) && $request === 'put') {
-    //   $request = $_GET['_method'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $title = $_POST['title'];
+      $category = $_POST['category'];
+      $author = $_POST['author'];
+      $content = $_POST['content'];
 
-    //   if ($_SERVER['REQUEST_METHOD'] === strtoupper($request)) {
-    //     $title = $_POST['title'];
-    //     $category = $_POST['category'];
-    //     $author = $_POST['author'];
-    //     $image = $_POST['image'];
-    //     $content = $_POST['content'];
+      $imageData = null;
+      if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $imageTmp = $_FILES['image']['tmp_name'];
+        $imageType = $_FILES['image']['type'];
+        $imageContent = file_get_contents($imageTmp);
+        $imageData = 'data:' . $imageType . ';base64,' . base64_encode($imageContent);
+      }
 
-    //     $params = [
-    //       'title' => $title,
-    //       'category' => $category,
-    //       'author' => $author,
-    //       'image_path' => $image,
-    //       'content' => $content
-    //     ];
+      $columns = ['title', 'category', 'author', 'content'];
+      $placeholders = [':title', ':category', ':author', ':content'];
+      $params = [
+        'title' => $title,
+        'category' => $category,
+        'author' => $author,
+        'content' => $content
+      ];
 
-    //     $article = $this->db->query("INSERT INTO blog (title, category, author, image_path, content) VALUES (:title, :category, :author, :image_path, :content)", $params);
+      if ($imageData) {
+        $columns[] = 'image_path';
+        $placeholders[] = ':image';
+        $params['image'] = $imageData;
+      }
 
-    //     loadView('admin', [
-    //       'articles' => $article
-    //     ]);
-    //   }
-    // }
+      $query = "INSERT INTO blog (" . implode(', ', $columns) . ") VALUES (" . implode(', ', $placeholders) . ")";
 
-    loadView('admin');
+      $this->db->query($query, $params);
+
+      redirect('/admin');
+    }
   }
 
   /**
@@ -143,15 +151,13 @@ class AdminController
         'id' => $id
       ];
 
-      $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params);
+      $this->db->query("SELECT * FROM blog WHERE id = :id", $params);
 
       if (isset($request) && $request === 'delete') {
 
         $this->db->query("DELETE FROM blog WHERE id = :id", $params);
 
-        loadView('admin', [
-          'articles' => $article
-        ]);
+        redirect('/admin');
       }
     }
   }

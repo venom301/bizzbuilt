@@ -1,5 +1,1 @@
-- [x] Add POST route for /admin/posts/update in routes.php
-- [x] Update AdminController.php update() method to handle POST: process image upload, encode to base64, update DB
-- [x] Update loadImage() in helper.php to handle base64 data URIs
-- [x] Add hidden id field to edit form
-- [x] Test image upload and display (server started, browser tool disabled)
+- [ ] Fix the create function in AdminController.php to properly store images when creating a post by dynamically building the INSERT query.

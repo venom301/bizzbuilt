@@ -87,3 +87,8 @@ function dateFormat($date)
 {
     echo date('F j, Y', strtotime($date));
 }
+
+function redirect($url){
+   header("Location: {$url}");
+  exit;
+}

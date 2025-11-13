@@ -111,10 +111,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="/admin/posts">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="postTitle" required>
+                        <input type="text" name="title" class="form-control" id="postTitle" required>
                     </div>
                     <div class="mb-3">
                         <label for="postCategory" class="form-label">Category</label>
@@ -139,11 +139,15 @@
                         <label for="editor" class="form-label">Content</label>
                         <textarea name="content" id="editor"></textarea>
                     </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Post</button>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary">Save Post</button>
+                <form method="POST" action="/admin/posts">
+                    <button type="submit" class="btn btn-primary">Save Post</button>
+                </form>
             </div>
         </div>
     </div>
