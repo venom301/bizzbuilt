@@ -143,15 +143,9 @@
                     <button type="submit" class="btn btn-primary">Save Post</button>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST" action="/admin/posts">
-                    <button type="submit" class="btn btn-primary">Save Post</button>
-                </form>
-            </div>
         </div>
     </div>
-</div>
+</div> 
 
 <!-- scripts -->
 <?= loadPartial('scripts') ?>
