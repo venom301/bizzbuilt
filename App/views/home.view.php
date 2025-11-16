@@ -25,7 +25,7 @@
        <?php foreach($articles as $article): ?>
       <div class="col-md-4">
         <div class="card blog-card fade-in">
-          <img src="<?= $article->image_path ?>" class="card-img-top" alt="Blog post image" />
+          <img src="/uploads/<?= $article->image_path ?>" class="card-img-top" alt="Blog post image" />
           <div class="card-body">
             <div class="mb-2">
               <a href="#" class="tag">Business</a>
@@ -38,7 +38,7 @@
              <?= $article->content ?>
             </p>
             <div class="d-flex justify-content-between align-items-center">
-              <a href="/readmore" class="btn btn-primary">Read More</a>
+              <a href="/readmore/<?= $article->id ?>" class="btn btn-primary">Read More</a>
               <small class="text-muted">5 mins read</small>
             </div>
           </div>

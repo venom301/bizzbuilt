@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 use Framework\Database;
-
 class AdminController
 {
 
@@ -48,13 +47,9 @@ class AdminController
       $author = $_POST['author'];
       $content = $_POST['content'];
 
-      $imageData = null;
-      if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $imageTmp = $_FILES['image']['tmp_name'];
-        $imageType = $_FILES['image']['type'];
-        $imageContent = file_get_contents($imageTmp);
-        $imageData = 'data:' . $imageType . ';base64,' . base64_encode($imageContent);
-      }
+      require_once basePath('public/upload.php');
+
+      $imageData = uploadImage();
 
       $columns = ['title', 'category', 'author', 'content'];
       $placeholders = [':title', ':category', ':author', ':content'];
@@ -62,16 +57,11 @@ class AdminController
         'title' => $title,
         'category' => $category,
         'author' => $author,
-        'content' => $content
+        'content' => $content,
+        'image_path' => $imageData
       ];
 
-      if ($imageData) {
-        $columns[] = 'image_path';
-        $placeholders[] = ':image';
-        $params['image'] = $imageData;
-      }
-
-      $query = "INSERT INTO blog (" . implode(', ', $columns) . ") VALUES (" . implode(', ', $placeholders) . ")";
+      $query = "INSERT INTO blog(title, category, author, content, image_path) VALUES(:title, :category, :author, :content, :image_path);";
 
       $this->db->query($query, $params);
 
@@ -93,20 +83,15 @@ class AdminController
       $content = $_POST['content'] ?? '';
       // $tags = $_POST['tags'] ?? '';
 
-      $imageData = null;
-      if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $imageTmp = $_FILES['image']['tmp_name'];
-        $imageType = $_FILES['image']['type'];
-        $imageContent = file_get_contents($imageTmp);
-        $imageData = 'data:' . $imageType . ';base64,' . base64_encode($imageContent);
-      }
+      require basePath('public/upload.php');
+
+      $imageData = uploadImage();
 
       $updateParams = [
         'id' => $id,
         'title' => $title,
         'category' => $category,
         'content' => $content
-        // 'tags' => $tags
       ];
 
       $query = "UPDATE blog SET title = :title, category = :category, content = :content";

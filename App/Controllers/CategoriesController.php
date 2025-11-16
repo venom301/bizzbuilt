@@ -3,14 +3,35 @@
 namespace App\Controllers;
 
 use Framework\Router;
+use Framework\Database;
 
-class CategoriesController{
-    
-public function display(){
-    loadView('categories');
-}
+class CategoriesController
+{
 
-public function readmore(){
-    loadView('extra-pages/readmore');
-}
+    protected $db;
+
+    public function __construct()
+    {
+        $config = require basePath('config/db.php');
+        $this->db = new Database($config);
+    }
+    public function display()
+    {
+        loadView('categories');
+    }
+
+    public function readmore($params)
+    {
+        $id = $params['id'] ?? '';
+
+        $params = [
+            'id' => $id
+        ];
+
+        $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
+
+        loadView('extra-pages/readmore', [
+            'articles' => $article
+        ]);
+    }
 }
