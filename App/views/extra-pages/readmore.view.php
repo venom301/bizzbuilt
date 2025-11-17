@@ -13,10 +13,10 @@
         </h1>
         <div class="d-flex align-items-center">
           <!-- <img src="assets/img/author-avatar.jpg" alt="Author Avatar" class="rounded-circle" -->
-            <!-- style="width: 50px; height: 50px; object-fit: cover" /> -->
+          <!-- style="width: 50px; height: 50px; object-fit: cover" /> -->
           <div class="ms-3">
             <p class="mb-0">By <?= $article->author ?></p>
-            <p class="mb-0"><small>Published on <?= dateFormat($article->published_date)  ?></small></p>
+            <p class="mb-0"><small>Published on <?= dateFormat($article->published_date) ?></small></p>
           </div>
         </div>
       </div>
@@ -37,8 +37,10 @@
 
           <!-- Article Content -->
           <div class="article-content fade-in">
-            <p class="lead">
-            <?= $article->paragraph ?>
+            <!-- <p class="lead">
+              In an ever-evolving business landscape, staying ahead requires
+              adopting innovative strategies that align with current market
+              trends and future predictions.
             </p>
 
             <h2>1. Digital Transformation</h2>
@@ -47,14 +49,15 @@
               eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
 
-            <!-- <img src="assets/img/strategy1.jpg" alt="Digital Transformation" class="img-fluid my-4 rounded" /> -->
+             <img src="assets/img/strategy1.jpg" alt="Digital Transformation" class="img-fluid my-4 rounded" /> 
 
             <h2>2. Sustainable Business Practices</h2>
             <p>
               Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+            </p> -->
 
+            <?php echo ($article->full_content); ?>
             <blockquote class="blockquote">
               <p>
                 <?= $article->remark ?>
@@ -75,7 +78,7 @@
                 <h4><?= $article->author ?></h4>
                 <!-- <p class="text-muted">Business Strategy Consultant</p> -->
                 <p>
-                 <?= $article->about_author ?>
+                  <?= $article->about_author ?>
                 </p>
                 <div class="social-links">
                   <a href="#" class="btn btn-outline-primary me-2" aria-label="Twitter Profile"><i

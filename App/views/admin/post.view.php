@@ -19,7 +19,7 @@
                             <?= $article->content ?>
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="/readmore" class="btn btn-primary">View full article</a>
+                            <a href="/readmore/<?= $article->id ?>" class="btn btn-primary">View full article</a>
                             <small class="text-muted">5 mins read</small>
                         </div>
                     </div>
