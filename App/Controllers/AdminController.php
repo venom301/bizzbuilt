@@ -81,7 +81,8 @@ class AdminController
       $title = $_POST['title'] ?? '';
       $category = $_POST['category'] ?? '';
       $content = $_POST['content'] ?? '';
-      // $tags = $_POST['tags'] ?? '';
+      $full_content = $_POST['full_content'] ?? '';
+      $tags = $_POST['tags'] ?? '';
 
       require basePath('public/upload.php');
 
@@ -91,10 +92,12 @@ class AdminController
         'id' => $id,
         'title' => $title,
         'category' => $category,
-        'content' => $content
+        'content' => $content,
+        'full_content' => $full_content,
+        'tags' => $tags
       ];
 
-      $query = "UPDATE blog SET title = :title, category = :category, content = :content";
+      $query = "UPDATE blog SET title = :title, category = :category, content = :content, full_content = :full_content, tags = :tags";
       if ($imageData) {
         $query .= ", image_path = :image";
         $updateParams['image'] = $imageData;

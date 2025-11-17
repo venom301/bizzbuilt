@@ -50,8 +50,8 @@
                                     <label for="postImage" class="form-label">Featured Image</label>
                                     <input type="file" class="form-control" id="postImage" name="image" accept="image/*"
                                         onchange="previewImage(this)">
-                                    <?php if (!empty($article->image)): ?>
-                                        <img id="imagePreview" src="<?php echo $article->image; ?>" alt="Current Image"
+                                    <?php if (!empty($article->image_path)): ?>
+                                        <img id="imagePreview" src="<?php echo $article->image_path; ?>" alt="Current Image"
                                             class="mt-2 img-fluid">
                                     <?php else: ?>
                                         <img id="imagePreview" src="#" alt="Preview" class="mt-2 img-fluid d-none">
@@ -60,8 +60,17 @@
                                 <div class="mb-3">
                                     <label for="editor" class="form-label">Content</label>
                                     <textarea id="editor" name="content" class="form-control"
-                                        rows="10"><?php echo htmlspecialchars($article->content ?? ''); ?></textarea>
+                                        rows="3"><?php echo htmlspecialchars($article->content ?? ''); ?></textarea>
                                 </div>
+                                <!-- full content -->
+                                <div class="mb-3">
+                                    <label for="editor" class="form-label">Full Content</label>
+                                    <textarea id="editor" name="full_content" class="form-control"
+                                        rows="8"><?php echo htmlspecialchars($article->full_content ?? ''); ?></textarea>
+                                </div>
+
+                                <input type="tex" class="form-control mb-2" name="tags" id="tags" placeholder="Add tags">
+
                                 <!-- <div class="mb-3">
                                     <label class="form-label">Tags</label>
                                     <div class="input-group">

@@ -12,6 +12,7 @@
                             <a href="#" class="tag">Business</a>
                             <a href="#" class="tag">Strategy</a>
                         </div>
+                        <a class="btn btn-outline-primary m-2 me-auto" href="/admin/edit/<?= $article->id ?>">edit post</a>
                         <h5 class="card-title">
                             <?= $article->title ?>
                         </h5>
@@ -19,7 +20,7 @@
                             <?= $article->content ?>
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="/readmore/<?= $article->id ?>" class="btn btn-primary">View full article</a>
+                            <a href="/readmore/<?= $article->id ?>" class="btn btn-primary btn-sm rounded-2">View full article</a>
                             <small class="text-muted">5 mins read</small>
                         </div>
                     </div>

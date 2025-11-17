@@ -139,13 +139,20 @@
                         <label for="editor" class="form-label">Content</label>
                         <textarea name="content" id="editor"></textarea>
                     </div>
+                    <!-- full content -->
+                    <div class="mb-3">
+                        <label for="editor" class="form-label">Full Content</label>
+                        <textarea id="editor" name="full_content" class="form-control"
+                            rows="8"><?php echo htmlspecialchars($article->full_content ?? ''); ?></textarea>
+                    </div>
+                    <input type="tex" class="form-control mb-2" name="tags" id="tags" placeholder="Add tags">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Save Post</button>
                 </form>
             </div>
         </div>
     </div>
-</div> 
+</div>
 
 <!-- scripts -->
 <?= loadPartial('scripts') ?>
