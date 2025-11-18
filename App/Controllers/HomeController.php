@@ -12,7 +12,7 @@ class HomeController
     }
     public function index()
     {
-        $article = $this->db->query("SELECT * FROM blog")->fetchAll();
+        $article = $this->db->query("SELECT * FROM blog_origin")->fetchAll();
         loadView('home', [
             'articles' => $article
         ]);

@@ -28,7 +28,7 @@ class CategoriesController
             'id' => $id
         ];
 
-        $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
+        $article = $this->db->query("SELECT * FROM blog_origin WHERE id = :id", $params)->fetchAll();
 
         loadView('extra-pages/readmore', [
             'articles' => $article

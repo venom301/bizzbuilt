@@ -20,7 +20,7 @@
                     <div class="stats-card">
                         <h3 class="h5 mb-3">Total Posts</h3>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="h2 mb-0">156</span>
+                            <span class="h2 mb-0"><?= count($articles) ?></span>
                             <i class="fas fa-file-alt fa-2x text-primary"></i>
                         </div>
                     </div>

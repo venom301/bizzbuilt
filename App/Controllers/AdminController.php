@@ -13,7 +13,7 @@ class AdminController
   }
   public function index()
   {
-    $article = $this->db->query("SELECT * FROM blog")->fetchAll();
+    $article = $this->db->query("SELECT * FROM blog_origin")->fetchAll();
     loadView('admin/dashboard', [
       'articles' => $article
     ]);
@@ -29,7 +29,7 @@ class AdminController
   }
   public function posts()
   {
-    $article = $this->db->query("SELECT * FROM blog");
+    $article = $this->db->query("SELECT * FROM blog_origin");
     loadView('admin/post', [
       'articles' => $article
     ]);
@@ -61,7 +61,7 @@ class AdminController
         'image_path' => $imageData
       ];
 
-      $query = "INSERT INTO blog(title, category, author, content, image_path) VALUES(:title, :category, :author, :content, :image_path);";
+      $query = "INSERT INTO blog_origin(title, category, author, content, image_path) VALUES(:title, :category, :author, :content, :image_path);";
 
       $this->db->query($query, $params);
 
@@ -97,14 +97,17 @@ class AdminController
         'tags' => $tags
       ];
 
-      $query = "UPDATE blog SET title = :title, category = :category, content = :content, full_content = :full_content, tags = :tags";
+      $query1 = "UPDATE blog_origin SET title = :title, category = :category, content = :content, full_content = :full_content";
       if ($imageData) {
-        $query .= ", image_path = :image";
+        $query1 .= ", image_path = :image";
         $updateParams['image'] = $imageData;
       }
-      $query .= " WHERE id = :id";
+      $query1 .= " WHERE id = :id";
 
-      $this->db->query($query, $updateParams);
+      // $query2 = "UPDATE tags SET tags = :tags";
+
+      $this->db->query($query1, $updateParams);
+      // $this->db->query($query2, $tags);
 
       // Redirect back to admin dashboard
       header('Location: /admin');
@@ -117,7 +120,7 @@ class AdminController
         'id' => $id
       ];
 
-      $article = $this->db->query("SELECT * FROM blog WHERE id = :id", $params)->fetchAll();
+      $article = $this->db->query("SELECT * FROM blog_origin WHERE id = :id", $params)->fetchAll();
       loadView('admin/form-handle/edit', [
         'articles' => $article
       ]);
@@ -139,11 +142,11 @@ class AdminController
         'id' => $id
       ];
 
-      $this->db->query("SELECT * FROM blog WHERE id = :id", $params);
+      $this->db->query("SELECT * FROM blog_origin WHERE id = :id", $params);
 
       if (isset($request) && $request === 'delete') {
 
-        $this->db->query("DELETE FROM blog WHERE id = :id", $params);
+        $this->db->query("DELETE FROM blog_origin WHERE id = :id", $params);
 
         redirect('/admin');
       }
