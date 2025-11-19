@@ -34,11 +34,30 @@ class AdminController
       'articles' => $article
     ]);
   }
-  public function comments()
+
+  /**
+   * Summary of comments
+   * @return void
+   */
+  public function comments($params)
   {
+    $id = $params['id'] ?? '';
+
+    $params = [
+      'íd' => $id
+    ];
+
+    $query = "SELECT * FROM comments WHERE comment_id = :id";
+    $this->db->query($query, $params);
+
     loadView('admin/comments');
   }
 
+  /**
+   * create post
+   * @param mixed $params
+   * @return void
+   */
   public function create($params)
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

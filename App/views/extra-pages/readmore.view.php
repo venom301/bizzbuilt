@@ -95,11 +95,11 @@
           <div class="comments-section mt-5 fade-in">
             <h3>Comments</h3>
             <!-- Comment Form -->
-            <form class="mb-4">
+            <form class="mb-4" method="post" action="/comment/<?= $article->id ?>">
               <div class="mb-3">
-                <textarea class="form-control" rows="3" placeholder="Leave a comment"></textarea>
+                <textarea class="form-control" name="comment" rows="3" placeholder="Leave a comment"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" name="submit" class="btn btn-primary">
                 Post Comment
               </button>
             </form>

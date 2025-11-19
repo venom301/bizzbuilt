@@ -12,6 +12,7 @@ $router->get('/admin/edit/{id}', 'AdminController@update');
 
 //create
 $router->post('/admin/posts', 'AdminController@create');
+$router->post('/comment/{id}', 'CategoriesController@comment');
 
 //update
 $router->post('/admin/posts/update', 'AdminController@update');
