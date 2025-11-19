@@ -40,7 +40,8 @@
                                             <td><?= $comment->id ?? 'N/A' ?></td>
                                             <td><?= $comment->title ?? 'N/A' ?></td>
                                             <td class="text-truncate" style="max-width: 300px;">
-                                                <?= htmlspecialchars($comment->comment ?? '') ?></td>
+                                                <?= htmlspecialchars($comment->comment ?? '') ?>
+                                            </td>
                                             <td><?= $comment->commenter_email ?? 'Anonymous' ?></td>
                                             <td><?= dateFormat($comment->created_at ?? '') ?></td>
                                             <td>

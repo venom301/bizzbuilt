@@ -4,7 +4,6 @@ namespace App\Controllers;
 use Framework\Database;
 class AdminController
 {
-
   protected $db;
   public function __construct()
   {
@@ -41,16 +40,13 @@ class AdminController
    */
   public function comments($params)
   {
-    $id = $params['id'] ?? '';
+    
+    $query = "SELECT * FROM comments";
+    $comment = $this->db->query($query)->fetchAll();
 
-    $params = [
-      'íd' => $id
-    ];
-
-    $query = "SELECT * FROM comments WHERE comment_id = :id";
-    $this->db->query($query, $params);
-
-    loadView('admin/comments');
+    loadView('admin/comments', [
+      'comments' => $comment
+    ]);
   }
 
   /**
