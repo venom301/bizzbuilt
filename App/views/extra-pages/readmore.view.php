@@ -105,25 +105,25 @@
             </form>
 
             <!-- Comments List -->
+             <?php foreach($comments as $comment): ?>
             <div class="comments-list">
               <!-- Sample Comment -->
               <div class="comment mb-4">
                 <div class="d-flex">
-                  <img src="assets/img/user-avatar.jpg" alt="User Avatar" class="rounded-circle me-3"
-                    style="width: 50px; height: 50px; object-fit: cover" />
+                  <!-- <img src="assets/img/user-avatar.jpg" alt="User Avatar" class="rounded-circle me-3"
+                    style="width: 50px; height: 50px; object-fit: cover" /> -->
                   <div>
-                    <h5 class="mb-1">Jane Smith</h5>
+                    <h5 class="mb-1"><?= $comment->user ?></h5>
                     <p class="text-muted mb-2"><small>2 hours ago</small></p>
                     <p>
-                      Great article! The insights about digital transformation
-                      are particularly relevant for today's business
-                      environment.
+                     <?= $comment->comment ?>
                     </p>
                     <button class="btn btn-sm btn-link">Reply</button>
                   </div>
                 </div>
               </div>
             </div>
+            <?php endforeach; ?>
           </div>
         </div>
 
